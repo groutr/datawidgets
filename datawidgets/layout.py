@@ -75,7 +75,6 @@ def _observe_handlers(instance):
             continue
 
         if inspect.isfunction(obj):
-            print(name, obj)
             observees = getattr(obj, '_observes', {})
             for observee, kwargs in observees.items():
                 handlers[observee].append((-1, obj, kwargs))
@@ -86,7 +85,6 @@ def create_widgets(instance, public_attributes_only=True):
     fields = _fields(instance)
 
     handlers = _observe_handlers(instance)
-    print(handlers)
     widgets = []
     __widgets = OrderedDict()
     for field in fields:
